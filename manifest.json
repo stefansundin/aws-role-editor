@@ -12,8 +12,16 @@
     "default_icon": "icons/16x16-icon.png",
     "default_popup": "popup.html"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://console.aws.amazon.com/*"],
+      "js": ["js/content_script.js"],
+      "run_at": "document_end"
+    }
+  ],
   "permissions": [
     "cookies",
+    "storage",
     "https://console.aws.amazon.com/"
-   ]
+  ]
 }

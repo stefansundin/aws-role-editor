@@ -67,7 +67,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Activate trash icons
     $(".glyphicon-trash").click(function() {
       $(this).parents("tr").find("input").val("");
-    })
+    });
+
+    // Get settings from storage
+    chrome.storage.sync.get({
+      navbarColor: null,
+    }, function(items) {
+      $("#navbar-color").spectrum("set", items.navbarColor);
+    });
   });
 
   $("form").submit(function(e) {
@@ -111,6 +118,10 @@ document.addEventListener("DOMContentLoaded", function() {
         $("#failed").show();
         $("#failed").text("Failed to save cookie.");
       }
+    });
+
+    chrome.storage.sync.set({
+      navbarColor: $("#navbar-color").val(),
     });
   });
 }, false);
